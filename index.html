@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Estratégia de Ativação de Base — Seazone Investimentos</title>
+<style>
+:root{
+  --orange:#FF6B35;--orange2:#FF8C42;--dark:#0F0F1A;--card:#1A1A2E;--card2:#20203A;
+  --border:#2E2E4A;--text:#E8E8F4;--muted:#7777AA;--green:#2ECC71;--blue:#3B82F6;
+  --purple:#A855F7;--yellow:#EAB308;--red:#EF4444;--teal:#14B8A6;--pink:#EC4899;
+  --white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:var(--text);line-height:1.6;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:#0F0F1Aee;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-inner a{white-space:nowrap;padding:14px 16px;font-size:0.78rem;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;transition:all .2s;font-weight:500;}
+.nav-inner a:hover,.nav-inner a.active{color:var(--orange);border-bottom-color:var(--orange);}
+
+/* ── SECTIONS ── */
+section{padding:80px 24px 60px;max-width:1100px;margin:0 auto;}
+section:first-of-type{padding-top:120px;}
+
+.section-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:var(--orange);font-weight:700;margin-bottom:8px;}
+h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#fff;margin-bottom:6px;line-height:1.2;}
+.section-sub{font-size:1rem;color:var(--muted);margin-bottom:40px;max-width:680px;}
+
+/* ── HERO ── */
+#hero{text-align:center;padding-top:130px;padding-bottom:60px;}
+#hero .kicker{display:inline-block;background:#FF6B3518;border:1px solid #FF6B3544;color:var(--orange);font-size:0.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:20px;}
+#hero h1{font-size:clamp(2rem,5vw,3.6rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:16px;}
+#hero h1 span{color:var(--orange);}
+#hero p{font-size:1.05rem;color:var(--muted);max-width:600px;margin:0 auto 36px;}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.chip{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:0.82rem;color:var(--muted);}
+.chip strong{color:var(--text);}
+
+/* ── CARDS ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;}
+.card-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.card h3{font-size:0.95rem;font-weight:700;color:#fff;}
+.card p{font-size:0.85rem;color:var(--muted);line-height:1.5;}
+.card .tag{display:inline-block;font-size:0.7rem;font-weight:700;padding:2px 10px;border-radius:8px;margin-top:10px;}
+
+/* ── ALERT BOX ── */
+.alert{background:#FF6B3510;border:1px solid #FF6B3540;border-left:4px solid var(--orange);border-radius:12px;padding:20px 24px;margin-bottom:32px;}
+.alert strong{color:var(--orange);}
+.alert p{font-size:0.9rem;color:var(--text);margin-top:4px;}
+
+.info{background:#3B82F610;border:1px solid #3B82F640;border-left:4px solid var(--blue);border-radius:12px;padding:20px 24px;margin-bottom:20px;}
+.info strong{color:var(--blue);}
+.info p{font-size:0.88rem;color:var(--text);margin-top:4px;}
+
+/* ── AWARENESS LADDER ── */
+.ladder{display:flex;flex-direction:column;gap:0;}
+.ladder-step{display:flex;align-items:stretch;gap:0;}
+.ladder-num{width:48px;display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+.ladder-num .num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0;}
+.ladder-num .line{width:2px;flex:1;margin:4px auto;}
+.ladder-step:last-child .line{display:none;}
+.ladder-body{flex:1;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:12px;}
+.ladder-body h4{font-size:0.95rem;font-weight:700;margin-bottom:4px;}
+.ladder-body p{font-size:0.84rem;color:var(--muted);}
+.ladder-body .segments{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.seg-badge{font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:8px;}
+
+/* ── SEGMENT CARDS ── */
+.seg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+.seg-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;}
+.seg-card-head{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.seg-card-head .left{display:flex;align-items:center;gap:10px;}
+.seg-card-head h3{font-size:0.95rem;font-weight:800;color:#fff;}
+.seg-card-head .sub{font-size:0.75rem;color:var(--muted);}
+.priority{font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:8px;}
+.p-max{background:#FF6B3520;color:var(--orange);}
+.p-high{background:#EAB30820;color:var(--yellow);}
+.p-mid{background:#3B82F620;color:var(--blue);}
+.seg-body{padding:16px 20px;}
+.seg-row{display:flex;gap:8px;margin-bottom:10px;align-items:flex-start;}
+.seg-row .label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);white-space:nowrap;min-width:80px;margin-top:2px;}
+.seg-row .val{font-size:0.85rem;color:var(--text);}
+.seg-row .val strong{color:#fff;}
+.awareness-bar{height:6px;border-radius:3px;background:var(--border);margin-top:6px;overflow:hidden;}
+.awareness-fill{height:100%;border-radius:3px;transition:width .4s;}
+
+/* ── CADENCE ── */
+.cadence{display:flex;flex-direction:column;gap:0;}
+.touch{display:flex;gap:14px;align-items:stretch;}
+.touch-side{width:40px;display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+.touch-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:800;flex-shrink:0;}
+.touch-line{width:2px;flex:1;margin:4px auto;}
+.touch:last-child .touch-line{display:none;}
+.touch-body{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:10px;}
+.touch-body .touch-label{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.touch-body h4{font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:4px;}
+.touch-body p{font-size:0.82rem;color:var(--muted);}
+.touch-body .channels{display:flex;gap:6px;margin-top:8px;}
+.ch{font-size:0.7rem;font-weight:600;padding:2px 8px;border-radius:6px;}
+.ch-wa{background:#25D36620;color:#25D366;}
+.ch-em{background:#3B82F620;color:var(--blue);}
+
+/* ── TABLE ── */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:0.85rem;}
+th{background:#1A1A38;color:var(--muted);font-size:0.72rem;text-transform:uppercase;letter-spacing:.5px;padding:12px 16px;text-align:left;white-space:nowrap;}
+td{padding:12px 16px;border-top:1px solid var(--border);color:var(--text);vertical-align:top;}
+tr:hover td{background:#ffffff04;}
+td strong{color:#fff;}
+td .small{font-size:0.78rem;color:var(--muted);}
+
+/* ── GAP ── */
+.gap-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:640px){.gap-grid{grid-template-columns:1fr;}}
+.gap-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;}
+.gap-box h4{font-size:0.85rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.gap-box ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.gap-box li{font-size:0.83rem;display:flex;align-items:flex-start;gap:8px;color:var(--muted);}
+.gap-box li::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;margin-top:6px;}
+.has{color:var(--green)!important;}
+.missing{color:var(--red)!important;}
+
+/* ── KPI ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;}
+.kpi .metric{font-size:1.8rem;font-weight:900;color:#fff;line-height:1;}
+.kpi .metric span{font-size:0.85rem;font-weight:600;color:var(--muted);margin-left:4px;}
+.kpi .kpi-label{font-size:0.8rem;color:var(--muted);margin-top:6px;}
+.kpi .kpi-seg{font-size:0.72rem;font-weight:600;margin-top:8px;padding:2px 8px;border-radius:6px;display:inline-block;}
+
+/* ── CALENDAR ── */
+.cal-week{display:grid;grid-template-columns:90px repeat(7,1fr);gap:2px;margin-bottom:2px;font-size:0.75rem;}
+.cal-week.header .cal-cell{font-weight:700;color:var(--muted);text-align:center;padding:6px 4px;}
+.cal-cell{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 6px;min-height:60px;}
+.cal-cell.label{background:transparent;border-color:transparent;display:flex;align-items:center;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);}
+.cal-event{border-radius:5px;padding:3px 6px;font-size:0.68rem;font-weight:600;margin-bottom:3px;line-height:1.3;}
+
+/* ── COLORS ── */
+.bg-orange{background:#FF6B3520;}.c-orange{color:var(--orange);}
+.bg-green{background:#2ECC7120;}.c-green{color:var(--green);}
+.bg-blue{background:#3B82F620;}.c-blue{color:var(--blue);}
+.bg-purple{background:#A855F720;}.c-purple{color:var(--purple);}
+.bg-yellow{background:#EAB30820;}.c-yellow{color:var(--yellow);}
+.bg-red{background:#EF444420;}.c-red{color:var(--red);}
+.bg-teal{background:#14B8A620;}.c-teal{color:var(--teal);}
+.bg-pink{background:#EC489920;}.c-pink{color:var(--pink);}
+
+/* ── DIVIDER ── */
+.divider{border:none;border-top:1px solid var(--border);margin:40px 0;}
+
+/* ── SCROLLTOP ── */
+.scrolltop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:var(--orange);border:none;color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:99;}
+.scrolltop.show{opacity:1;}
+
+@media(max-width:640px){
+  .cards,.seg-grid{grid-template-columns:1fr;}
+  .gap-grid{grid-template-columns:1fr;}
+  .cal-week{grid-template-columns:70px repeat(4,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#diagnostico" class="active">Diagnóstico</a>
+    <a href="#consciencia">Consciência</a>
+    <a href="#segmentos">Segmentos</a>
+    <a href="#cadencias">Cadências</a>
+    <a href="#calendario">Calendário</a>
+    <a href="#gap">Gap Analysis</a>
+    <a href="#kpis">KPIs</a>
+    <a href="#proximos">Próximos Passos</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="kicker">Seazone Investimentos · Abril 2026</div>
+  <h1>Estratégia de <span>Topo de Funil</span><br/>Ativação de Base</h1>
+  <p>Como ativar cada segmento da nossa base via WhatsApp e E-mail com a mensagem certa, no momento certo — antes de mandar a oferta.</p>
+  <div class="hero-chips">
+    <div class="chip">🎯 Meta: <strong>10 vendas em abril</strong></div>
+    <div class="chip">📱 Canal: <strong>WhatsApp + E-mail</strong></div>
+    <div class="chip">👥 Segmentos: <strong>6 públicos</strong></div>
+    <div class="chip">📅 Início: <strong>09/04/2026</strong></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     SEÇÃO 1 · DIAGNÓSTICO
+════════════════════════════════════════════════ -->
+<section id="diagnostico">
+  <div class="section-label">01 — Diagnóstico</div>
+  <h2>O problema real</h2>
+  <p class="section-sub">Antes de disparar qualquer mensagem, precisamos entender onde cada grupo está e por que uma abordagem única não funciona.</p>
+
+  <div class="alert">
+    <strong>⚠️ O erro mais comum em ativação de base:</strong>
+    <p>Enviar a mesma mensagem de oferta para todo mundo. Investidores, proprietários e leads perdidos estão em estágios completamente diferentes — e cada um precisa de uma narrativa diferente antes de receber uma proposta.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-head">
+        <div class="icon bg-orange">🏠</div>
+        <div>
+          <h3>Proprietários</h3>
+          <div style="font-size:.75rem;color:var(--muted)">Maior base</div>
+        </div>
+      </div>
+      <p>Conhecem a Seazone como <strong style="color:#fff">gestora de imóvel</strong>, não como oportunidade de investimento. O produto que eles conhecem é diferente do que queremos vender.</p>
+      <div class="tag bg-orange c-orange">Consciência baixa sobre SPOTs</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="icon bg-yellow">💼</div>
+        <div>
+          <h3>Investidores SZI</h3>
+          <div style="font-size:.75rem;color:var(--muted)">Alta prontidão</div>
+        </div>
+      </div>
+      <p>Já compraram um SPOT. Conhecem o modelo, confiam na Seazone, estão gerando renda. São os <strong style="color:#fff">mais fáceis de converter</strong> para um segundo ativo.</p>
+      <div class="tag bg-yellow c-yellow">Máxima consciência</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="icon bg-blue">🛒</div>
+        <div>
+          <h3>Investidores Marketplace</h3>
+          <div style="font-size:.75rem;color:var(--muted)">Relacionamento indireto</div>
+        </div>
+      </div>
+      <p>Investiram via plataforma terceira. Conhecem o produto, mas o <strong style="color:#fff">relacionamento com a Seazone é fraco</strong>. Precisam ser trazidos para o ecossistema direto.</p>
+      <div class="tag bg-blue c-blue">Alta consciência, baixo vínculo</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="icon bg-red">🔥</div>
+        <div>
+          <h3>Lost com Opp — Investidores</h3>
+          <div style="font-size:.75rem;color:var(--muted)">Mais quentes</div>
+        </div>
+      </div>
+      <p>Chegaram a ter uma oportunidade aberta mas não fecharam. São os leads <strong style="color:#fff">mais próximos da compra</strong> — existe uma objeção específica que precisa ser removida.</p>
+      <div class="tag bg-red c-red">Prioridade máxima</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="icon bg-purple">❄️</div>
+        <div>
+          <h3>Lost sem Opp — Investidores</h3>
+          <div style="font-size:.75rem;color:var(--muted)">Precisam re-engajamento</div>
+        </div>
+      </div>
+      <p>Demonstraram interesse mas nunca chegaram a uma oportunidade. O contato esfriou. Precisam de <strong style="color:#fff">reconexão com nova razão para conversar.</strong></p>
+      <div class="tag bg-purple c-purple">Re-engajamento necessário</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="icon bg-teal">🚪</div>
+        <div>
+          <h3>Lost sem Opp — Proprietários</h3>
+          <div style="font-size:.75rem;color:var(--muted)">Segunda chance</div>
+        </div>
+      </div>
+      <p>Tiveram contato sobre gestão mas não fecharam. Podem não saber do modelo SPOT. Abordagem <strong style="color:#fff">completamente nova</strong> com um ângulo diferente de entrada.</p>
+      <div class="tag bg-teal c-teal">Nova proposta de valor</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     SEÇÃO 2 · CONSCIÊNCIA
+════════════════════════════════════════════════ -->
+<section id="consciencia">
+  <div class="section-label">02 — Framework</div>
+  <h2>Escada de consciência</h2>
+  <p class="section-sub">Cada segmento está em um degrau diferente. A mensagem de topo de funil precisa partir de onde a pessoa está, não de onde queremos que ela chegue.</p>
+
+  <div class="info">
+    <strong>💡 Princípio base:</strong>
+    <p>Você não começa uma conversa com "compra agora". Você começa do ponto em que a pessoa está e a move um degrau por vez. Para Proprietários, esse caminho é mais longo. Para Lost com Opp, é curtíssimo.</p>
+  </div>
+
+  <div class="ladder">
+    <div class="ladder-step">
+      <div class="ladder-num">
+        <div class="num" style="background:#EF444420;color:var(--red);">1</div>
+        <div class="line" style="background:var(--border);"></div>
+      </div>
+      <div class="ladder-body">
+        <h4 style="color:var(--red)">Não consciente</h4>
+        <p>A pessoa não sabe que tem um problema (ou uma oportunidade). Não conhece Seazone Investimentos, não conhece o modelo SPOT, não está pensando em investir.</p>
+        <div class="segments">
+          <span class="seg-badge bg-teal c-teal">Lost sem Opp · Proprietários</span>
+        </div>
+      </div>
+    </div>
+    <div class="ladder-step">
+      <div class="ladder-num">
+        <div class="num" style="background:#A855F720;color:var(--purple);">2</div>
+        <div class="line" style="background:var(--border);"></div>
+      </div>
+      <div class="ladder-body">
+        <h4 style="color:var(--purple)">Consciente do problema</h4>
+        <p>Sabe que quer fazer o dinheiro trabalhar, mas não sabe como ou não pensou em imóvel para aluguel por temporada como veículo.</p>
+        <div class="segments">
+          <span class="seg-badge bg-orange c-orange">Proprietários</span>
+        </div>
+      </div>
+    </div>
+    <div class="ladder-step">
+      <div class="ladder-num">
+        <div class="num" style="background:#EAB30820;color:var(--yellow);">3</div>
+        <div class="line" style="background:var(--border);"></div>
+      </div>
+      <div class="ladder-body">
+        <h4 style="color:var(--yellow)">Consciente da solução</h4>
+        <p>Sabe que investimento imobiliário para renda passiva existe, mas ainda não conhece o modelo SPE/SPOT da Seazone ou ainda não considerou seriamente.</p>
+        <div class="segments">
+          <span class="seg-badge bg-purple c-purple">Lost sem Opp · Investidores</span>
+        </div>
+      </div>
+    </div>
+    <div class="ladder-step">
+      <div class="ladder-num">
+        <div class="num" style="background:#3B82F620;color:var(--blue);">4</div>
+        <div class="line" style="background:var(--border);"></div>
+      </div>
+      <div class="ladder-body">
+        <h4 style="color:var(--blue)">Consciente do produto</h4>
+        <p>Conhece o modelo SPOT da Seazone, chegou a avaliar, tem consciência dos números e do produto. Falta a decisão — existe uma objeção ou o momento não foi certo.</p>
+        <div class="segments">
+          <span class="seg-badge bg-red c-red">Lost com Opp · Investidores</span>
+          <span class="seg-badge bg-blue c-blue">Investidores Marketplace</span>
+        </div>
+      </div>
+    </div>
+    <div class="ladder-step">
+      <div class="ladder-num">
+        <div class="num" style="background:#2ECC7120;color:var(--green);">5</div>
+        <div class="line" style="background:var(--border);"></div>
+      </div>
+      <div class="ladder-body">
+        <h4 style="color:var(--green)">Plenamente consciente + confidente</h4>
+        <p>Já comprou, já viu o produto funcionar, confia no time, está gerando renda. Está pronto para ouvir sobre o próximo ativo. Apenas precisa de uma razão de compra válida.</p>
+        <div class="segments">
+          <span class="seg-badge bg-yellow c-yellow">Investidores SZI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     SEÇÃO 3 · SEGMENTOS
+════════════════════════════════════════════════ -->
+<section id="segmentos">
+  <div class="section-label">03 — Segmentos</div>
+  <h2>Estratégia por segmento</h2>
+  <p class="section-sub">Para cada grupo: quem são, qual é o ângulo de entrada, qual a narrativa de topo de funil e qual a cadência recomendada.</p>
+
+  <div class="seg-grid">
+
+    <!-- PROPRIETÁRIOS -->
+    <div class="seg-card">
+      <div class="seg-card-head">
+        <div class="left">
+          <div class="icon bg-orange" style="width:34px;height:34px;border-radius:9px;font-size:1rem;">🏠</div>
+          <div>
+            <h3>Proprietários</h3>
+            <div class="sub">Maior base · Degrau 2</div>
+          </div>
+        </div>
+        <div class="priority p-max">Prioridade Máxima</div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row">
+          <div class="label">Quem são</div>
+          <div class="val">Têm imóvel gerido pela Seazone. Confiam na marca como gestora, <strong>não necessariamente sabem do modelo SPOT.</strong></div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Consciência</div>
+          <div class="val">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div class="awareness-bar" style="flex:1;"><div class="awareness-fill" style="width:30%;background:var(--orange);"></div></div>
+              <span style="font-size:.78rem;color:var(--orange);">30% · Baixa</span>
+            </div>
+          </div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Objetivo ToF</div>
+          <div class="val"><strong>Despertar</strong> a consciência sobre o SPOT como expansão natural de quem já confia na Seazone.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Ângulo</div>
+          <div class="val" style="color:var(--orange);font-style:italic;">"Você já confia na Seazone para seu imóvel. Agora descubra como multiplicar esse patrimônio."</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Narrativa</div>
+          <div class="val"><strong>Da confiança à expansão.</strong> Usar o relacionamento já estabelecido para apresentar uma nova proposta de valor — investimento, não só gestão.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Cadência</div>
+          <div class="val"><strong>4 toques</strong> em 3 semanas. Educação → Prova social → Apresentação do modelo → Oferta.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Canais</div>
+          <div class="val"><span class="ch ch-wa">WhatsApp</span> <span class="ch ch-em">E-mail</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INVESTIDORES SZI -->
+    <div class="seg-card">
+      <div class="seg-card-head">
+        <div class="left">
+          <div class="icon bg-yellow" style="width:34px;height:34px;border-radius:9px;font-size:1rem;">💼</div>
+          <div>
+            <h3>Investidores SZI</h3>
+            <div class="sub">Alta prontidão · Degrau 5</div>
+          </div>
+        </div>
+        <div class="priority p-max">Prioridade Máxima</div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row">
+          <div class="label">Quem são</div>
+          <div class="val">Já compraram um SPOT via Seazone Investimentos. Têm ativo em operação, conhecem o modelo, recebem renda.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Consciência</div>
+          <div class="val">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div class="awareness-bar" style="flex:1;"><div class="awareness-fill" style="width:95%;background:var(--yellow);"></div></div>
+              <span style="font-size:.78rem;color:var(--yellow);">95% · Máxima</span>
+            </div>
+          </div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Objetivo ToF</div>
+          <div class="val"><strong>Ativar a ambição</strong> de escalar o portfólio. Não é necessário educar — é necessário apresentar a próxima oportunidade certa.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Ângulo</div>
+          <div class="val" style="color:var(--yellow);font-style:italic;">"Seu ativo já trabalha. Onde você coloca o próximo?"</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Narrativa</div>
+          <div class="val"><strong>Da conquista à escala.</strong> Reconhecer o investimento atual como uma vitória e apresentar a diversificação de portfólio como o próximo movimento natural.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Cadência</div>
+          <div class="val"><strong>7 toques</strong> em abril (já detalhado no doc). Inserir 1 touch de "aquecimento" antes do primeiro disparo.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Status</div>
+          <div class="val" style="color:var(--green);">✓ Mensagens já produzidas para abril</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INVESTIDORES MARKETPLACE -->
+    <div class="seg-card">
+      <div class="seg-card-head">
+        <div class="left">
+          <div class="icon bg-blue" style="width:34px;height:34px;border-radius:9px;font-size:1rem;">🛒</div>
+          <div>
+            <h3>Investidores Marketplace</h3>
+            <div class="sub">Vínculo indireto · Degrau 4</div>
+          </div>
+        </div>
+        <div class="priority p-high">Alta Prioridade</div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row">
+          <div class="label">Quem são</div>
+          <div class="val">Investiram em um SPOT via plataforma terceira. Conhecem o produto, mas o relacionamento com a Seazone é indireto ou fraco.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Consciência</div>
+          <div class="val">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div class="awareness-bar" style="flex:1;"><div class="awareness-fill" style="width:75%;background:var(--blue);"></div></div>
+              <span style="font-size:.78rem;color:var(--blue);">75% · Alta</span>
+            </div>
+          </div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Objetivo ToF</div>
+          <div class="val"><strong>Trazer para o relacionamento direto</strong> com a Seazone. Mostrar o que existe além do marketplace: acesso antecipado, benefícios exclusivos, relacionamento 1:1.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Ângulo</div>
+          <div class="val" style="color:var(--blue);font-style:italic;">"Você chegou por lá. Mas o acesso direto tem vantagens que o marketplace não dá."</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Narrativa</div>
+          <div class="val"><strong>Do marketplace ao acesso exclusivo.</strong> Posicionar o canal direto como upgrade: lançamentos antes de ir ao marketplace, condições melhores, consultor dedicado.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Cadência</div>
+          <div class="val"><strong>3 toques</strong> em 2 semanas. Reconexão direta → Benefício do canal direto → Oferta de portfólio.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOST COM OPP · INVESTIDORES -->
+    <div class="seg-card">
+      <div class="seg-card-head">
+        <div class="left">
+          <div class="icon bg-red" style="width:34px;height:34px;border-radius:9px;font-size:1rem;">🔥</div>
+          <div>
+            <h3>Lost com Opp · Invest.</h3>
+            <div class="sub">Mais quentes · Degrau 4–5</div>
+          </div>
+        </div>
+        <div class="priority p-max">Prioridade Máxima</div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row">
+          <div class="label">Quem são</div>
+          <div class="val">Chegaram a ter uma oportunidade de compra aberta (SZI ou Marketplace) mas não fecharam. Existe uma <strong>objeção específica</strong> que parou a decisão.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Consciência</div>
+          <div class="val">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div class="awareness-bar" style="flex:1;"><div class="awareness-fill" style="width:88%;background:var(--red);"></div></div>
+              <span style="font-size:.78rem;color:var(--red);">88% · Muito Alta</span>
+            </div>
+          </div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Objetivo ToF</div>
+          <div class="val"><strong>Remover a objeção específica</strong> e reabrir a conversa. O funil foi percorrido — falta só o clique final.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Ângulo</div>
+          <div class="val" style="color:var(--red);font-style:italic;">"Sabemos onde paramos. Voltamos com a resposta."</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Narrativa</div>
+          <div class="val"><strong>Da pausa à retomada.</strong> Reconhecer que algo travou, nomear as objeções mais comuns (ticket, modelo SPE, momento financeiro) e desmontá-las com dados concretos.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Cadência</div>
+          <div class="val"><strong>3 toques curtos</strong> em 2 semanas. Reconexão → Quebra de objeção → Porta de entrada (menor ticket).</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Status</div>
+          <div class="val" style="color:var(--green);">✓ Mensagens já produzidas (Lost SZI no doc)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOST SEM OPP · INVESTIDORES -->
+    <div class="seg-card">
+      <div class="seg-card-head">
+        <div class="left">
+          <div class="icon bg-purple" style="width:34px;height:34px;border-radius:9px;font-size:1rem;">❄️</div>
+          <div>
+            <h3>Lost sem Opp · Invest.</h3>
+            <div class="sub">Base fria · Degrau 3</div>
+          </div>
+        </div>
+        <div class="priority p-high">Alta Prioridade</div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row">
+          <div class="label">Quem são</div>
+          <div class="val">Demonstraram interesse em investir, mas nunca chegaram a uma oportunidade aberta. Contato esfriou ou foi perdido sem avanço claro.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Consciência</div>
+          <div class="val">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div class="awareness-bar" style="flex:1;"><div class="awareness-fill" style="width:55%;background:var(--purple);"></div></div>
+              <span style="font-size:.78rem;color:var(--purple);">55% · Média-Alta</span>
+            </div>
+          </div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Objetivo ToF</div>
+          <div class="val"><strong>Reacender o interesse</strong> com uma nova razão concreta para conversar — dado novo, empreendimento novo, mudança de momento.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Ângulo</div>
+          <div class="val" style="color:var(--purple);font-style:italic;">"Muito mudou desde a última vez. Vale uma conversa de 10 minutos?"</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Narrativa</div>
+          <div class="val"><strong>Do abandono à nova oportunidade.</strong> Não fingir que nunca conversaram. Usar o contexto anterior como vínculo e apresentar algo novo e relevante.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Cadência</div>
+          <div class="val"><strong>2–3 toques</strong> em 2 semanas. Reconexão sem pressão → Dado/prova nova → Convite para conversa.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOST SEM OPP · PROPRIETÁRIOS -->
+    <div class="seg-card">
+      <div class="seg-card-head">
+        <div class="left">
+          <div class="icon bg-teal" style="width:34px;height:34px;border-radius:9px;font-size:1rem;">🚪</div>
+          <div>
+            <h3>Lost sem Opp · Prop.</h3>
+            <div class="sub">Nova proposta · Degrau 1</div>
+          </div>
+        </div>
+        <div class="priority p-mid">Prioridade Média</div>
+      </div>
+      <div class="seg-body">
+        <div class="seg-row">
+          <div class="label">Quem são</div>
+          <div class="val">Tiveram contato sobre gestão de imóvel mas não fecharam. Provavelmente <strong>nunca ouviram falar do modelo SPOT</strong> como oportunidade de investimento.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Consciência</div>
+          <div class="val">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div class="awareness-bar" style="flex:1;"><div class="awareness-fill" style="width:15%;background:var(--teal);"></div></div>
+              <span style="font-size:.78rem;color:var(--teal);">15% · Muito Baixa</span>
+            </div>
+          </div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Objetivo ToF</div>
+          <div class="val"><strong>Apresentar uma proposta completamente nova</strong> — não mais gestão, mas investimento. Abordar como se fosse um primeiro contato com uma nova oferta.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Ângulo</div>
+          <div class="val" style="color:var(--teal);font-style:italic;">"Na época era sobre gestão. Hoje temos algo diferente — e pode ser mais interessante pra você."</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Narrativa</div>
+          <div class="val"><strong>Da gestão ao investimento.</strong> Usar o conhecimento da marca como ponto de partida, mas apresentar uma proposta de valor completamente diferente da que foi recusada antes.</div>
+        </div>
+        <div class="seg-row">
+          <div class="label">Cadência</div>
+          <div class="val"><strong>2 toques</strong> em 2 semanas. Reconexão com nova proposta → Estudo de caso / prova.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     SEÇÃO 4 · CADÊNCIAS DETALHADAS
+════════════════════════════════════════════════ -->
+<section id="cadencias">
+  <div class="section-label">04 — Cadências</div>
+  <h2>Sequência de toques por segmento</h2>
+  <p class="section-sub">A ordem dos conteúdos importa tanto quanto o conteúdo em si. Aqui está a cadência completa para os segmentos que ainda não têm mensagens produzidas.</p>
+
+  <!-- PROPRIETÁRIOS -->
+  <h3 style="color:var(--orange);font-size:1rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;">🏠 Proprietários — Cadência de 4 toques</h3>
+  <div class="cadence" style="margin-bottom:40px;">
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#FF6B3520;color:var(--orange);">T1</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--orange);">D+0 · Educação</div>
+        <h4>"Você sabia que existem imóveis que trabalham por você — sem que você precise gerenciar nada?"</h4>
+        <p>Introdução leve ao conceito de SPOT: renda passiva, gestão Seazone, sem trabalho operacional. NÃO mencionar preço nem empreendimento específico ainda. Objetivo: despertar curiosidade.</p>
+        <div class="channels"><span class="ch ch-wa">WhatsApp</span></div>
+      </div>
+    </div>
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#FF6B3520;color:var(--orange);">T2</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--orange);">D+5 · Prova Social</div>
+        <h4>"Investidores que começaram com um ativo estão hoje com dois ou três — veja os números reais."</h4>
+        <p>E-mail com cases reais (ou dados agregados): retorno médio %, ocupação média, exemplos de crescimento de portfólio. Mostrar que o modelo funciona antes de apresentar uma oferta.</p>
+        <div class="channels"><span class="ch ch-em">E-mail</span></div>
+      </div>
+    </div>
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#FF6B3520;color:var(--orange);">T3</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--orange);">D+10 · Apresentação do Modelo</div>
+        <h4>"Como funciona o modelo SPOT: do aporte à renda mensal — explicado em 3 minutos."</h4>
+        <p>Explicação clara do SPE, como diferencia de imóvel tradicional, o que a Seazone faz na gestão. Pode ser via link para conteúdo ou via mensagem estruturada. Finalizar com CTA de conversa (não de compra).</p>
+        <div class="channels"><span class="ch ch-wa">WhatsApp</span> <span class="ch ch-em">E-mail</span></div>
+      </div>
+    </div>
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#FF6B3520;color:var(--orange);">T4</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--orange);">D+16 · Oferta</div>
+        <h4>"[Nome], separei uma oportunidade que faz sentido para o seu perfil. Posso apresentar?"</h4>
+        <p>Agora sim: oferta específica de um empreendimento do portfólio. Personalizar pelo perfil (ticket acessível ou alta rentabilidade, dependendo do que sabe sobre o proprietário). CTA claro: "quero saber mais" / "me liga".</p>
+        <div class="channels"><span class="ch ch-wa">WhatsApp</span> <span class="ch ch-em">E-mail</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTIDORES MARKETPLACE -->
+  <h3 style="color:var(--blue);font-size:1rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;">🛒 Investidores Marketplace — Cadência de 3 toques</h3>
+  <div class="cadence" style="margin-bottom:40px;">
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#3B82F620;color:var(--blue);">T1</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--blue);">D+0 · Reconexão Direta</div>
+        <h4>"Você já investiu com a Seazone — agora quero te mostrar o que só o canal direto oferece."</h4>
+        <p>Apresentar os benefícios do relacionamento direto: acesso antecipado a lançamentos, consultor dedicado, sem taxa de intermediação, condições especiais. Não oferecer empreendimento ainda.</p>
+        <div class="channels"><span class="ch ch-wa">WhatsApp</span></div>
+      </div>
+    </div>
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#3B82F620;color:var(--blue);">T2</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--blue);">D+6 · Portfólio Exclusivo</div>
+        <h4>"Antes de ir ao marketplace, nossos clientes diretos têm primeiro acesso. Veja o que temos agora."</h4>
+        <p>E-mail com visão do portfólio atual: empreendimentos disponíveis, rentabilidades, destinos. Criar senso de acesso privilegiado. Abrir janela de conversa com consultor.</p>
+        <div class="channels"><span class="ch ch-em">E-mail</span></div>
+      </div>
+    </div>
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#3B82F620;color:var(--blue);">T3</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--blue);">D+12 · Oferta Direcionada</div>
+        <h4>"Com base no seu perfil de investidor, separei 2 opções que fazem sentido. Posso apresentar?"</h4>
+        <p>Oferta personalizada baseada no que sabe sobre o investidor (destino já preferido, faixa de ticket, perfil de risco). CTA direto: conversa de 20 minutos com consultor.</p>
+        <div class="channels"><span class="ch ch-wa">WhatsApp</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOST SEM OPP INVESTIDORES -->
+  <h3 style="color:var(--purple);font-size:1rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;">❄️ Lost sem Opp · Investidores — Cadência de 3 toques</h3>
+  <div class="cadence" style="margin-bottom:40px;">
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#A855F720;color:var(--purple);">T1</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--purple);">D+0 · Reconexão sem Pressão</div>
+        <h4>"Faz um tempo. Não quero te vender nada agora — só quero saber se o contexto mudou."</h4>
+        <p>Mensagem curta, sem oferta, que reconhece o tempo passado e abre diálogo genuíno. Pergunta aberta sobre o momento atual. Objetivo: resposta, não conversão.</p>
+        <div class="channels"><span class="ch ch-wa">WhatsApp</span></div>
+      </div>
+    </div>
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#A855F720;color:var(--purple);">T2</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--purple);">D+7 · Nova Prova / Dado</div>
+        <h4>"Desde nossa última conversa, os SPOTs que você chegou a considerar entregaram X% de retorno."</h4>
+        <p>E-mail com dado concreto novo: performance de empreendimentos em operação, crescimento de destinos, depoimentos de investidores. Criar nova razão para retomar a conversa.</p>
+        <div class="channels"><span class="ch ch-em">E-mail</span></div>
+      </div>
+    </div>
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#A855F720;color:var(--purple);">T3</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--purple);">D+14 · Convite Específico</div>
+        <h4>"Quero te mostrar o Caraguá Spot — a partir de R$191k. Sem compromisso, só para você ter o contexto."</h4>
+        <p>Oferta de menor ticket como porta de entrada. Remover barreira financeira. CTA leve: "me diz se quero saber mais" vs. "compre agora". Deixar a decisão na mão do lead.</p>
+        <div class="channels"><span class="ch ch-wa">WhatsApp</span> <span class="ch ch-em">E-mail</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOST SEM OPP PROPRIETÁRIOS -->
+  <h3 style="color:var(--teal);font-size:1rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;">🚪 Lost sem Opp · Proprietários — Cadência de 2 toques</h3>
+  <div class="cadence">
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#14B8A620;color:var(--teal);">T1</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--teal);">D+0 · Nova Proposta</div>
+        <h4>"Na época conversamos sobre gestão — hoje voltei com algo diferente que pode fazer mais sentido."</h4>
+        <p>Reconhecer o contato anterior sem assumir que ele se lembra de detalhes. Apresentar brevemente o conceito de SPOT como algo novo e diferente do que foi discutido antes. Não forçar, abrir curiosidade.</p>
+        <div class="channels"><span class="ch ch-wa">WhatsApp</span></div>
+      </div>
+    </div>
+    <div class="touch">
+      <div class="touch-side">
+        <div class="touch-dot" style="background:#14B8A620;color:var(--teal);">T2</div>
+        <div class="touch-line" style="background:var(--border);"></div>
+      </div>
+      <div class="touch-body">
+        <div class="touch-label" style="color:var(--teal);">D+8 · Caso Real</div>
+        <h4>"Quero te mostrar o que um investidor com um perfil parecido com o seu fez — e o que está gerando hoje."</h4>
+        <p>E-mail com case de investidor que também era ou considerou ser proprietário. Mostrar o contraste: "imóvel com aluguel comum" vs. "SPOT com gestão Seazone". Finalizar com CTA de conversa.</p>
+        <div class="channels"><span class="ch ch-em">E-mail</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     SEÇÃO 5 · CALENDÁRIO
+════════════════════════════════════════════════ -->
+<section id="calendario">
+  <div class="section-label">05 — Calendário</div>
+  <h2>Visão integrada de abril</h2>
+  <p class="section-sub">Todos os segmentos no mesmo calendário. Cor por segmento para visualizar sobreposições e distribuição de carga.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Dia</th>
+          <th>Segmento</th>
+          <th>Toque</th>
+          <th>Gatilho / Tema</th>
+          <th>Canal</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>07/04</strong></td>
+          <td>Seg</td>
+          <td><span class="seg-badge bg-orange c-orange" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Proprietários</span></td>
+          <td>T1</td>
+          <td>Educação — Introdução ao conceito SPOT</td>
+          <td><span class="ch ch-wa">WA</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>09/04</strong></td>
+          <td>Qui</td>
+          <td><span class="seg-badge bg-yellow c-yellow" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Invest. SZI</span></td>
+          <td>T1</td>
+          <td>Urgência — Jurerê Spot II · 5 unidades</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--green);font-size:.78rem;">✓ Pronto</span></td>
+        </tr>
+        <tr>
+          <td><strong>10/04</strong></td>
+          <td>Sex</td>
+          <td><span class="seg-badge bg-red c-red" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Lost c/ Opp</span></td>
+          <td>T1</td>
+          <td>Reconexão — Jurerê Spot II nas últimas unidades</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--green);font-size:.78rem;">✓ Pronto</span></td>
+        </tr>
+        <tr>
+          <td><strong>12/04</strong></td>
+          <td>Sab</td>
+          <td><span class="seg-badge bg-orange c-orange" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Proprietários</span></td>
+          <td>T2</td>
+          <td>Prova Social — Cases de retorno real</td>
+          <td><span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>13/04</strong></td>
+          <td>Seg</td>
+          <td><span class="seg-badge bg-yellow c-yellow" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Invest. SZI</span></td>
+          <td>T2</td>
+          <td>Expansão — Barra Grande Spot · 23,2% a.a.</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--green);font-size:.78rem;">✓ Pronto</span></td>
+        </tr>
+        <tr>
+          <td><strong>14/04</strong></td>
+          <td>Seg</td>
+          <td><span class="seg-badge bg-blue c-blue" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Invest. MKT</span></td>
+          <td>T1</td>
+          <td>Reconexão — Benefícios do canal direto</td>
+          <td><span class="ch ch-wa">WA</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>14/04</strong></td>
+          <td>Seg</td>
+          <td><span class="seg-badge bg-purple c-purple" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Lost s/ Opp</span></td>
+          <td>T1</td>
+          <td>Reconexão sem pressão — Contexto mudou?</td>
+          <td><span class="ch ch-wa">WA</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>16/04</strong></td>
+          <td>Qui</td>
+          <td><span class="seg-badge bg-yellow c-yellow" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Invest. SZI</span></td>
+          <td>T3</td>
+          <td>Diversificação — Bonito Spot II · Ecoturismo</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--green);font-size:.78rem;">✓ Pronto</span></td>
+        </tr>
+        <tr>
+          <td><strong>17/04</strong></td>
+          <td>Sex</td>
+          <td><span class="seg-badge bg-red c-red" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Lost c/ Opp</span></td>
+          <td>T2</td>
+          <td>Quebra de objeção — Modelo SPE explicado</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--green);font-size:.78rem;">✓ Pronto</span></td>
+        </tr>
+        <tr>
+          <td><strong>17/04</strong></td>
+          <td>Sex</td>
+          <td><span class="seg-badge bg-orange c-orange" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Proprietários</span></td>
+          <td>T3</td>
+          <td>Como funciona o SPOT — Apresentação do modelo</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>20/04</strong></td>
+          <td>Seg</td>
+          <td><span class="seg-badge bg-yellow c-yellow" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Invest. SZI</span></td>
+          <td>T4</td>
+          <td>Ambição — Natal Spot · 19,8% a.a.</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--green);font-size:.78rem;">✓ Pronto</span></td>
+        </tr>
+        <tr>
+          <td><strong>20/04</strong></td>
+          <td>Seg</td>
+          <td><span class="seg-badge bg-blue c-blue" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Invest. MKT</span></td>
+          <td>T2</td>
+          <td>Portfólio exclusivo — Acesso antecipado</td>
+          <td><span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>21/04</strong></td>
+          <td>Seg</td>
+          <td><span class="seg-badge bg-purple c-purple" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Lost s/ Opp</span></td>
+          <td>T2</td>
+          <td>Nova prova — Performance de empreendimentos</td>
+          <td><span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>22/04</strong></td>
+          <td>Ter</td>
+          <td><span class="seg-badge bg-teal c-teal" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Lost Prop.</span></td>
+          <td>T1</td>
+          <td>Nova proposta — Diferente da gestão</td>
+          <td><span class="ch ch-wa">WA</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>23/04</strong></td>
+          <td>Qui</td>
+          <td><span class="seg-badge bg-yellow c-yellow" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Invest. SZI</span></td>
+          <td>T5</td>
+          <td>Prova social — Itacaré Spot · Quem investiu colheu</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--green);font-size:.78rem;">✓ Pronto</span></td>
+        </tr>
+        <tr>
+          <td><strong>23/04</strong></td>
+          <td>Qui</td>
+          <td><span class="seg-badge bg-orange c-orange" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Proprietários</span></td>
+          <td>T4</td>
+          <td>Oferta — Empreendimento personalizado por perfil</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>24/04</strong></td>
+          <td>Sex</td>
+          <td><span class="seg-badge bg-red c-red" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Lost c/ Opp</span></td>
+          <td>T3</td>
+          <td>Porta de entrada — Caraguá Spot · R$191k</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--green);font-size:.78rem;">✓ Pronto</span></td>
+        </tr>
+        <tr>
+          <td><strong>26/04</strong></td>
+          <td>Dom</td>
+          <td><span class="seg-badge bg-blue c-blue" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Invest. MKT</span></td>
+          <td>T3</td>
+          <td>Oferta direcionada — 2 opções por perfil</td>
+          <td><span class="ch ch-wa">WA</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>27/04</strong></td>
+          <td>Seg</td>
+          <td><span class="seg-badge bg-yellow c-yellow" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Invest. SZI</span></td>
+          <td>T6</td>
+          <td>Acessibilidade — Ponta das Canas Spot II · R$196k</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--green);font-size:.78rem;">✓ Pronto</span></td>
+        </tr>
+        <tr>
+          <td><strong>28/04</strong></td>
+          <td>Ter</td>
+          <td><span class="seg-badge bg-purple c-purple" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Lost s/ Opp</span></td>
+          <td>T3</td>
+          <td>Convite — Caraguá Spot · Menor ticket</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>29/04</strong></td>
+          <td>Ter</td>
+          <td><span class="seg-badge bg-teal c-teal" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Lost Prop.</span></td>
+          <td>T2</td>
+          <td>Case real — Proprietário que virou investidor</td>
+          <td><span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--red);font-size:.78rem;">✗ Criar</span></td>
+        </tr>
+        <tr>
+          <td><strong>30/04</strong></td>
+          <td>Qui</td>
+          <td><span class="seg-badge bg-yellow c-yellow" style="font-size:.72rem;padding:2px 8px;border-radius:6px;">Invest. SZI</span></td>
+          <td>T7</td>
+          <td>Fechamento — Novo Campeche Spot II · Abril fecha</td>
+          <td><span class="ch ch-wa">WA</span> <span class="ch ch-em">E-mail</span></td>
+          <td><span style="color:var(--green);font-size:.78rem;">✓ Pronto</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     SEÇÃO 6 · GAP ANALYSIS
+════════════════════════════════════════════════ -->
+<section id="gap">
+  <div class="section-label">06 — Gap Analysis</div>
+  <h2>O que temos vs. o que falta</h2>
+  <p class="section-sub">O doc de disparos cobre bem dois segmentos. Aqui está o mapa completo do que precisa ser produzido para ativar todos os grupos.</p>
+
+  <div class="gap-grid">
+    <div class="gap-box">
+      <h4 style="color:var(--green);">✅ Já produzido</h4>
+      <ul>
+        <li class="has">7 mensagens (WA + e-mail) · Investidor SZI</li>
+        <li class="has">3 mensagens (WA + e-mail) · Lost com Opp Investidores (SZI)</li>
+        <li class="has">Calendário completo de datas para esses 2 segmentos</li>
+        <li class="has">Gatilhos e narrativas definidos por data</li>
+        <li class="has">Lógica de priorização de estoque dos empreendimentos</li>
+      </ul>
+    </div>
+    <div class="gap-box">
+      <h4 style="color:var(--red);">❌ Ainda precisa ser criado</h4>
+      <ul>
+        <li class="missing">4 mensagens (WA + e-mail) · Proprietários (T1 a T4)</li>
+        <li class="missing">3 mensagens (WA + e-mail) · Investidores Marketplace</li>
+        <li class="missing">3 mensagens (WA + e-mail) · Lost sem Opp Investidores</li>
+        <li class="missing">2 mensagens (WA + e-mail) · Lost sem Opp Proprietários</li>
+        <li class="missing">1 mensagem de aquecimento pré-disparo · Invest. SZI</li>
+        <li class="missing">Cases e dados de prova social (toques de educação)</li>
+        <li class="missing">Segmentação e higienização das listas por grupo</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="info">
+    <strong>🎯 Prioridade de produção sugerida:</strong>
+    <p>1º Lost com Opp (mais quentes, menor esforço de conversão) → 2º Investidores SZI (adicionar aquecimento) → 3º Proprietários (maior base, maior esforço de educação) → 4º Marketplace → 5º Lost sem Opp → 6º Lost Proprietários.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     SEÇÃO 7 · KPIs
+════════════════════════════════════════════════ -->
+<section id="kpis">
+  <div class="section-label">07 — KPIs</div>
+  <h2>Como medir o sucesso</h2>
+  <p class="section-sub">Métricas por segmento e por canal para saber o que está funcionando antes de abril acabar.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="metric">35%<span></span></div>
+      <div class="kpi-label">Taxa de abertura de e-mail esperada</div>
+      <div class="kpi-seg bg-yellow c-yellow">Invest. SZI (base quente)</div>
+    </div>
+    <div class="kpi">
+      <div class="metric">20%<span></span></div>
+      <div class="kpi-label">Taxa de abertura de e-mail esperada</div>
+      <div class="kpi-seg bg-purple c-purple">Lost s/ Opp (base fria)</div>
+    </div>
+    <div class="kpi">
+      <div class="metric">15%<span></span></div>
+      <div class="kpi-label">Taxa de resposta no WhatsApp</div>
+      <div class="kpi-seg bg-orange c-orange">Proprietários</div>
+    </div>
+    <div class="kpi">
+      <div class="metric">30%<span></span></div>
+      <div class="kpi-label">Taxa de resposta no WhatsApp</div>
+      <div class="kpi-seg bg-red c-red">Lost c/ Opp</div>
+    </div>
+    <div class="kpi">
+      <div class="metric">5%<span></span></div>
+      <div class="kpi-label">Taxa de conversão para reunião (todos os segmentos)</div>
+      <div class="kpi-seg bg-green c-green">Meta geral</div>
+    </div>
+    <div class="kpi">
+      <div class="metric">10<span>vendas</span></div>
+      <div class="kpi-label">Meta final de vendas em abril via WA + e-mail</div>
+      <div class="kpi-seg bg-orange c-orange">Meta de abril</div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="table-wrap" style="margin-top:0;">
+    <table>
+      <thead>
+        <tr>
+          <th>O que medir</th>
+          <th>Como medir</th>
+          <th>Frequência</th>
+          <th>Alerta vermelho</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Taxa de abertura do e-mail</strong></td>
+          <td>Ferramenta de disparo (RD Station, HubSpot, etc.)</td>
+          <td>Por disparo</td>
+          <td><span style="color:var(--red)">abaixo de 15%</span></td>
+        </tr>
+        <tr>
+          <td><strong>Taxa de resposta WhatsApp</strong></td>
+          <td>CRM / Contagem manual por consultor</td>
+          <td>Por disparo</td>
+          <td><span style="color:var(--red)">abaixo de 10%</span></td>
+        </tr>
+        <tr>
+          <td><strong>Leads que pediram mais info</strong></td>
+          <td>CRM — marcar intenção após cada disparo</td>
+          <td>Diário</td>
+          <td><span style="color:var(--red)">menos de 2/disparo</span></td>
+        </tr>
+        <tr>
+          <td><strong>Reuniões agendadas</strong></td>
+          <td>Agenda dos consultores</td>
+          <td>Semanal</td>
+          <td><span style="color:var(--red)">menos de 3/semana</span></td>
+        </tr>
+        <tr>
+          <td><strong>Vendas fechadas</strong></td>
+          <td>CRM — pipeline</td>
+          <td>Semanal</td>
+          <td><span style="color:var(--red)">menos de 2 na 3ª semana</span></td>
+        </tr>
+        <tr>
+          <td><strong>Segmento com melhor taxa</strong></td>
+          <td>Comparativo semanal entre segmentos</td>
+          <td>Semanal</td>
+          <td class="small">Realocar esforço para segmentos com melhor conversão</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     SEÇÃO 8 · PRÓXIMOS PASSOS
+════════════════════════════════════════════════ -->
+<section id="proximos">
+  <div class="section-label">08 — Execução</div>
+  <h2>Próximos passos</h2>
+  <p class="section-sub">O que fazer agora, esta semana e antes do primeiro disparo em 09/04.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-head">
+        <div class="icon" style="background:#EF444420;color:var(--red);">1</div>
+        <h3>Higienizar e segmentar a base</h3>
+      </div>
+      <p>Separar os contatos nos 6 segmentos antes de qualquer disparo. Sem segmentação correta, a mensagem errada chega na pessoa errada — e queima o relacionamento.</p>
+      <div class="tag" style="background:#EF444420;color:var(--red);">Esta semana · Urgente</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="icon" style="background:#EF444420;color:var(--red);">2</div>
+        <h3>Produzir mensagens faltantes</h3>
+      </div>
+      <p>Seguir a ordem de prioridade: Lost c/ Opp → SZI aquecimento → Proprietários → Marketplace → Lost s/ Opp. Usar o template do doc atual como padrão de formato.</p>
+      <div class="tag" style="background:#EF444420;color:var(--red);">Até 08/04</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="icon" style="background:#EAB30820;color:var(--yellow);">3</div>
+        <h3>Definir responsável por segmento</h3>
+      </div>
+      <p>Cada segmento deve ter um consultor dono da lista. Quem dispara é quem acompanha a resposta. Disparar em nome pessoal, não da empresa.</p>
+      <div class="tag" style="background:#EAB30820;color:var(--yellow);">Antes de 09/04</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="icon" style="background:#EAB30820;color:var(--yellow);">4</div>
+        <h3>Configurar rastreamento de respostas</h3>
+      </div>
+      <p>Definir onde e como registrar respostas no CRM. Criar tag por segmento e por intenção (só respondeu / pediu mais info / agendou / comprou).</p>
+      <div class="tag" style="background:#EAB30820;color:var(--yellow);">Antes de 09/04</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="icon" style="background:#2ECC7120;color:var(--green);">5</div>
+        <h3>Revisão de meio de abril</h3>
+      </div>
+      <p>Em 18/04, avaliar abertura + respostas + reuniões agendadas por segmento. Realocar esforço para os que estão performando melhor. Ajustar mensagens de baixa performance.</p>
+      <div class="tag" style="background:#2ECC7120;color:var(--green);">18/04</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="icon" style="background:#2ECC7120;color:var(--green);">6</div>
+        <h3>Retrospectiva de encerramento</h3>
+      </div>
+      <p>No final de abril: qual segmento trouxe mais resultado? Qual mensagem converteu mais? O que repetir em maio? Montar o playbook definitivo para os próximos meses.</p>
+      <div class="tag" style="background:#2ECC7120;color:var(--green);">30/04</div>
+    </div>
+  </div>
+</section>
+
+<button class="scrolltop" id="scrolltop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// scroll top
+window.addEventListener('scroll',()=>{
+  document.getElementById('scrolltop').classList.toggle('show',window.scrollY>400);
+});
+
+// active nav
+const sections=[...document.querySelectorAll('section[id]')];
+const links=[...document.querySelectorAll('.nav-inner a')];
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.remove('active'));
+      const a=document.querySelector(`.nav-inner a[href="#${e.target.id}"]`);
+      if(a){a.classList.add('active');a.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
+    }
+  });
+},{threshold:0.3});
+sections.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
