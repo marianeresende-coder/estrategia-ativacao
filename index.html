@@ -164,7 +164,7 @@ h2{font-size:1.2rem;font-weight:800;color:var(--text);margin-bottom:4px;}
     <div class="chip">🎯 Meta: <b>10 vendas</b></div>
     <div class="chip">📱 <b>WhatsApp + E-mail</b></div>
     <div class="chip">👥 <b>6 segmentos</b></div>
-    <div class="chip">📅 Início: <b>22/04</b></div>
+    <div class="chip">📅 Início: <b>23/04</b></div>
     <div class="chip">🏁 Fim: <b>15/05</b></div>
   </div>
 </div>
@@ -298,7 +298,7 @@ h2{font-size:1.2rem;font-weight:800;color:var(--text);margin-bottom:4px;}
 
     <!-- 22/04 SZI T0 -->
     <div class="cal-row" id="row-szi-aq">
-      <div class="cal-date">22/04<small>Qua</small></div>
+      <div class="cal-date">23/04<small>Qui</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#F59E0B20;color:var(--yellow)">SZI · Aquec.</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T0</div>
       <div class="cal-tema">Pré-disparo — seu ativo está operando bem</div>
@@ -318,7 +318,7 @@ h2{font-size:1.2rem;font-weight:800;color:var(--text);margin-bottom:4px;}
 
     <!-- 22/04 PROP T1 -->
     <div class="cal-row" id="row-prop-t1">
-      <div class="cal-date">22/04<small>Qua</small></div>
+      <div class="cal-date">23/04<small>Qui</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#FF6B3520;color:var(--orange)">Proprietários</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T1</div>
       <div class="cal-tema">Educação — Introdução ao SPOT</div>
@@ -337,23 +337,81 @@ h2{font-size:1.2rem;font-weight:800;color:var(--text);margin-bottom:4px;}
     </div>
 
     <!-- 24/04 SZI T1 -->
-    <div class="cal-row">
+    <div class="cal-row" id="row-szi-t1">
       <div class="cal-date">24/04<small>Sex</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#F59E0B20;color:var(--yellow)">Invest. SZI</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T1</div>
       <div class="cal-tema">Urgência — Jurerê Spot II · 5 unidades</div>
       <div class="cal-ch"><span class="ch-wa">WA</span><span class="ch-em">Email</span></div>
-      <div style="padding:9px 12px;"><span class="status-ok">✓ Pronto</span></div>
+      <div style="padding:9px 12px;"><button class="btn-open" onclick="toggle('szi-t1',event)">● Ver msg</button></div>
+    </div>
+    <div class="msg-drawer" id="d-szi-t1">
+      <div class="drawer-inner">
+        <div>
+          <div class="dlabel" style="color:#15803D">● WhatsApp</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t1-wa">[Nome], o Jurerê Spot II está com 5 unidades disponíveis. Jurerê Internacional é um dos destinos de maior demanda e ticket médio do Brasil em short stay. Essas são as últimas cotas a preço de lançamento. Se quiser dar uma olhada antes de fechar, me fala agora.</div>
+          <button class="copy-btn" onclick="cp('t-szi-t1-wa',this)">Copiar</button>
+        </div>
+        <div>
+          <div class="dlabel" style="color:var(--blue)">● E-mail</div>
+          <div class="msg-subj"><span>Assunto:</span> Jurerê Spot II · 5 unidades restantes</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t1-em">[Nome],
+
+Você já tem experiência com a operação Seazone. O Jurerê Spot II é nosso lançamento no destino mais premium de Santa Catarina — Jurerê Internacional tem demanda de curta temporada durante todo o ano, com alta concentração de público de alto padrão.
+
+Estamos com 5 unidades disponíveis:
+→ Localização: Jurerê Internacional, Florianópolis/SC
+→ Rentabilidade projetada: [X]% ao ano
+→ Gestão completa da Seazone desde a entrega
+→ Preço de custo — sem margem de revenda
+
+Quem já tem um SPOT em operação e quer diversificar por destino, esse é o movimento mais direto.
+
+Se quiser os números completos, é só responder aqui.
+
+[Consultor] | Seazone Investimentos</div>
+          <button class="copy-btn" onclick="cp('t-szi-t1-em',this)">Copiar</button>
+        </div>
+      </div>
     </div>
 
     <!-- 25/04 LOST C/ OPP T1 -->
-    <div class="cal-row">
+    <div class="cal-row" id="row-lopp-t1">
       <div class="cal-date">25/04<small>Sab</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#EF444420;color:var(--red)">Lost c/ Opp</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T1</div>
       <div class="cal-tema">Reconexão — Jurerê Spot II últimas unidades</div>
       <div class="cal-ch"><span class="ch-wa">WA</span><span class="ch-em">Email</span></div>
-      <div style="padding:9px 12px;"><span class="status-ok">✓ Pronto</span></div>
+      <div style="padding:9px 12px;"><button class="btn-open" onclick="toggle('lopp-t1',event)">● Ver msg</button></div>
+    </div>
+    <div class="msg-drawer" id="d-lopp-t1">
+      <div class="drawer-inner">
+        <div>
+          <div class="dlabel" style="color:#15803D">● WhatsApp</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-lopp-t1-wa">[Nome], lembra que conversamos sobre a Seazone Investimentos? Na época não avançamos, mas surgiu algo que vale uma nova olhada: o Jurerê Spot II está com as últimas unidades do lançamento. Jurerê Internacional tem demanda constante o ano todo. Posso te mandar os números?</div>
+          <button class="copy-btn" onclick="cp('t-lopp-t1-wa',this)">Copiar</button>
+        </div>
+        <div>
+          <div class="dlabel" style="color:var(--blue)">● E-mail</div>
+          <div class="msg-subj"><span>Assunto:</span> Jurerê Spot II — últimas unidades antes de fechar o lançamento</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-lopp-t1-em">[Nome],
+
+Há um tempo conversamos sobre a possibilidade de investir com a Seazone, mas a conversa não avançou.
+
+Voltei com uma razão concreta: o Jurerê Spot II está com as últimas unidades disponíveis neste lançamento. Jurerê Internacional é um dos destinos de short stay com maior demanda e ticket médio do Brasil.
+
+Por que agora:
+→ Últimas cotas a preço de custo — sem margem de revenda embutida
+→ Destino com demanda comprovada o ano todo
+→ Gestão completa da Seazone: você não gerencia nada
+→ Rentabilidade projetada: [X]% ao ano
+
+Se em algum momento a conversa travou por timing ou por falta de clareza no modelo, estou à disposição para resolver em 20 minutos.
+
+[Consultor] | Seazone Investimentos</div>
+          <button class="copy-btn" onclick="cp('t-lopp-t1-em',this)">Copiar</button>
+        </div>
+      </div>
     </div>
 
     <!-- 26/04 PROP T2 -->
@@ -392,13 +450,44 @@ Nos próximos dias vou te explicar como funciona o modelo. Se quiser adiantar a 
     </div>
 
     <!-- 28/04 SZI T2 -->
-    <div class="cal-row">
+    <div class="cal-row" id="row-szi-t2">
       <div class="cal-date">28/04<small>Ter</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#F59E0B20;color:var(--yellow)">Invest. SZI</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T2</div>
       <div class="cal-tema">Expansão — Barra Grande Spot · 23,2% a.a.</div>
       <div class="cal-ch"><span class="ch-wa">WA</span><span class="ch-em">Email</span></div>
-      <div style="padding:9px 12px;"><span class="status-ok">✓ Pronto</span></div>
+      <div style="padding:9px 12px;"><button class="btn-open" onclick="toggle('szi-t2',event)">● Ver msg</button></div>
+    </div>
+    <div class="msg-drawer" id="d-szi-t2">
+      <div class="drawer-inner">
+        <div>
+          <div class="dlabel" style="color:#15803D">● WhatsApp</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t2-wa">[Nome], tenho um novo destino para o seu portfólio: Barra Grande, na Bahia. Praia com demanda crescente no nordeste e o maior retorno projetado do portfólio atual: 23,2% a.a. Quer dar uma olhada nos números?</div>
+          <button class="copy-btn" onclick="cp('t-szi-t2-wa',this)">Copiar</button>
+        </div>
+        <div>
+          <div class="dlabel" style="color:var(--blue)">● E-mail</div>
+          <div class="msg-subj"><span>Assunto:</span> Barra Grande Spot · 23,2% a.a. — o maior retorno do portfólio</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t2-em">[Nome],
+
+Quero te apresentar o destino mais rentável do portfólio Seazone agora: o Barra Grande Spot, na Bahia.
+
+Barra Grande é uma das praias de maior crescimento no nordeste brasileiro — frequentada por público de alto poder aquisitivo, com ocupação forte durante quase todo o ano.
+
+O empreendimento:
+→ Rentabilidade projetada: 23,2% ao ano
+→ Diversificação geográfica — destino diferente do seu ativo atual
+→ Preço de custo de lançamento
+→ Gestão completa da Seazone do início ao fim
+
+Você já tem um SPOT operando. Esse seria o segundo ativo, em região diferente, com o maior retorno projetado do portfólio.
+
+Se quiser os detalhes, me responde aqui.
+
+[Consultor] | Seazone Investimentos</div>
+          <button class="copy-btn" onclick="cp('t-szi-t2-em',this)">Copiar</button>
+        </div>
+      </div>
     </div>
 
     <!-- 29/04 MKT T1 -->
@@ -442,23 +531,89 @@ Nos próximos dias vou te explicar como funciona o modelo. Se quiser adiantar a 
     </div>
 
     <!-- 01/05 SZI T3 -->
-    <div class="cal-row">
+    <div class="cal-row" id="row-szi-t3">
       <div class="cal-date">01/05<small>Sex</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#F59E0B20;color:var(--yellow)">Invest. SZI</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T3</div>
       <div class="cal-tema">Diversificação — Bonito Spot II · Ecoturismo</div>
       <div class="cal-ch"><span class="ch-wa">WA</span><span class="ch-em">Email</span></div>
-      <div style="padding:9px 12px;"><span class="status-ok">✓ Pronto</span></div>
+      <div style="padding:9px 12px;"><button class="btn-open" onclick="toggle('szi-t3',event)">● Ver msg</button></div>
+    </div>
+    <div class="msg-drawer" id="d-szi-t3">
+      <div class="drawer-inner">
+        <div>
+          <div class="dlabel" style="color:#15803D">● WhatsApp</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t3-wa">[Nome], aqui vai uma opção diferente: Bonito Spot II, em Bonito/MS. Ecoturismo de alto padrão com ocupação constante — perfil diferente do litoral, o que diversifica o risco do portfólio. Posso te mostrar os números?</div>
+          <button class="copy-btn" onclick="cp('t-szi-t3-wa',this)">Copiar</button>
+        </div>
+        <div>
+          <div class="dlabel" style="color:var(--blue)">● E-mail</div>
+          <div class="msg-subj"><span>Assunto:</span> Diversificação de portfólio — Bonito Spot II · Ecoturismo premium</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t3-em">[Nome],
+
+Até agora te apresentei destinos litorâneos. Quero mostrar algo diferente: o Bonito Spot II, em Bonito/MS.
+
+Bonito é referência nacional e internacional em ecoturismo de alto padrão. A demanda não depende de temporada de praia — é distribuída ao longo do ano, com público de alto poder aquisitivo e ocupação consistente.
+
+Por que faz sentido no seu portfólio:
+→ Diversificação de risco geográfico e de perfil de demanda
+→ Destino com demanda crescente e reconhecimento internacional
+→ Rentabilidade projetada: [X]% ao ano
+→ Gestão completa da Seazone
+
+Ter ativos em destinos diferentes protege o portfólio da sazonalidade de um único mercado.
+
+Se quiser os detalhes, me responde aqui.
+
+[Consultor] | Seazone Investimentos</div>
+          <button class="copy-btn" onclick="cp('t-szi-t3-em',this)">Copiar</button>
+        </div>
+      </div>
     </div>
 
     <!-- 02/05 LOST C/ OPP T2 -->
-    <div class="cal-row">
+    <div class="cal-row" id="row-lopp-t2">
       <div class="cal-date">02/05<small>Sab</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#EF444420;color:var(--red)">Lost c/ Opp</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T2</div>
       <div class="cal-tema">Quebra de objeção — Modelo SPE explicado</div>
       <div class="cal-ch"><span class="ch-wa">WA</span><span class="ch-em">Email</span></div>
-      <div style="padding:9px 12px;"><span class="status-ok">✓ Pronto</span></div>
+      <div style="padding:9px 12px;"><button class="btn-open" onclick="toggle('lopp-t2',event)">● Ver msg</button></div>
+    </div>
+    <div class="msg-drawer" id="d-lopp-t2">
+      <div class="drawer-inner">
+        <div>
+          <div class="dlabel" style="color:#15803D">● WhatsApp</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-lopp-t2-wa">[Nome], quero esclarecer algo que pode ter travado nossa conversa: o modelo SPE. Não é fundo, não é CRI — você vira dono de uma unidade com matrícula individual no cartório. Faz sentido eu explicar melhor em 10 minutos?</div>
+          <button class="copy-btn" onclick="cp('t-lopp-t2-wa',this)">Copiar</button>
+        </div>
+        <div>
+          <div class="dlabel" style="color:var(--blue)">● E-mail</div>
+          <div class="msg-subj"><span>Assunto:</span> O que é uma SPE — e por que isso importa para você</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-lopp-t2-em">[Nome],
+
+Em reunião, o modelo SPE às vezes gera dúvidas. Quero ser direto sobre o que é e o que não é.
+
+O que é:
+Uma SPE (Sociedade de Propósito Específico) é criada para construir um único empreendimento. Você adquire cotas dessa sociedade. Quando o imóvel é entregue, as cotas se convertem em unidade com matrícula individual no cartório — você vira proprietário direto.
+
+O que não é:
+→ Não é fundo de investimento
+→ Não é CRI ou produto financeiro (é imóvel real, com escritura)
+→ Não é consórcio (sem sorteio, sem fila)
+
+Na prática:
+→ Você paga o custo real da construção
+→ Recebe um imóvel pronto, decorado e equipado
+→ A Seazone opera — você recebe renda mensalmente
+→ Pode vender no Marketplace Seazone quando quiser
+
+Se o que travou foi a estrutura jurídica, me deixa te mostrar a documentação. É mais simples do que parece.
+
+[Consultor] | Seazone Investimentos</div>
+          <button class="copy-btn" onclick="cp('t-lopp-t2-em',this)">Copiar</button>
+        </div>
+      </div>
     </div>
 
     <!-- 02/05 PROP T3 -->
@@ -499,13 +654,44 @@ Na semana que vem te apresento uma oportunidade específica para o seu perfil.
     </div>
 
     <!-- 05/05 SZI T4 -->
-    <div class="cal-row">
+    <div class="cal-row" id="row-szi-t4">
       <div class="cal-date">05/05<small>Ter</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#F59E0B20;color:var(--yellow)">Invest. SZI</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T4</div>
       <div class="cal-tema">Ambição — Natal Spot · 19,8% a.a.</div>
       <div class="cal-ch"><span class="ch-wa">WA</span><span class="ch-em">Email</span></div>
-      <div style="padding:9px 12px;"><span class="status-ok">✓ Pronto</span></div>
+      <div style="padding:9px 12px;"><button class="btn-open" onclick="toggle('szi-t4',event)">● Ver msg</button></div>
+    </div>
+    <div class="msg-drawer" id="d-szi-t4">
+      <div class="drawer-inner">
+        <div>
+          <div class="dlabel" style="color:#15803D">● WhatsApp</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t4-wa">[Nome], mais uma opção para o portfólio: Natal Spot, no Rio Grande do Norte. 19,8% a.a. projetado — nordeste com voos internacionais diretos e demanda crescente o ano todo. Quer conhecer?</div>
+          <button class="copy-btn" onclick="cp('t-szi-t4-wa',this)">Copiar</button>
+        </div>
+        <div>
+          <div class="dlabel" style="color:var(--blue)">● E-mail</div>
+          <div class="msg-subj"><span>Assunto:</span> Natal Spot · 19,8% a.a. — nordeste em expansão</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t4-em">[Nome],
+
+Quero te apresentar mais uma oportunidade de diversificação: o Natal Spot, no Rio Grande do Norte.
+
+Natal tem crescimento acelerado no turismo com voos diretos internacionais — a ocupação é distribuída ao longo do ano de forma diferente dos destinos do sul/sudeste, especialmente com turistas europeus na baixa temporada do hemisfério norte.
+
+O empreendimento:
+→ Rentabilidade projetada: 19,8% ao ano
+→ Demanda internacional, não apenas nacional
+→ Diversificação de sazonalidade em relação ao sul do país
+→ Gestão completa da Seazone
+
+Se o seu portfólio tem ativo no litoral sul, Natal é uma forma de crescer em mercado independente.
+
+Me responde se quiser os detalhes.
+
+[Consultor] | Seazone Investimentos</div>
+          <button class="copy-btn" onclick="cp('t-szi-t4-em',this)">Copiar</button>
+        </div>
+      </div>
     </div>
 
     <!-- 05/05 MKT T2 -->
@@ -597,13 +783,43 @@ Sem compromisso — só me responde se quiser saber mais.
     </div>
 
     <!-- 08/05 SZI T5 -->
-    <div class="cal-row">
+    <div class="cal-row" id="row-szi-t5">
       <div class="cal-date">08/05<small>Sex</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#F59E0B20;color:var(--yellow)">Invest. SZI</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T5</div>
       <div class="cal-tema">Prova social — Itacaré Spot · quem investiu colheu</div>
       <div class="cal-ch"><span class="ch-wa">WA</span><span class="ch-em">Email</span></div>
-      <div style="padding:9px 12px;"><span class="status-ok">✓ Pronto</span></div>
+      <div style="padding:9px 12px;"><button class="btn-open" onclick="toggle('szi-t5',event)">● Ver msg</button></div>
+    </div>
+    <div class="msg-drawer" id="d-szi-t5">
+      <div class="drawer-inner">
+        <div>
+          <div class="dlabel" style="color:#15803D">● WhatsApp</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t5-wa">[Nome], o Itacaré Spot já está em operação há dois anos. Os investidores que entraram no lançamento estão colhendo resultados acima do projetado. Te mando os números reais de operação?</div>
+          <button class="copy-btn" onclick="cp('t-szi-t5-wa',this)">Copiar</button>
+        </div>
+        <div>
+          <div class="dlabel" style="color:var(--blue)">● E-mail</div>
+          <div class="msg-subj"><span>Assunto:</span> Itacaré Spot em operação — resultados reais de 2 anos</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t5-em">[Nome],
+
+O Itacaré Spot é um dos primeiros empreendimentos da Seazone — já está em operação há dois anos. Quero te mostrar o que aconteceu com quem investiu no lançamento.
+
+Resultados reais (2 anos de operação):
+→ Rentabilidade realizada acima da projetada no lançamento
+→ Ocupação consistente — não apenas na alta temporada
+→ Nenhum investidor precisou gerenciar nada
+→ Valorização do ativo acima do mercado convencional
+
+Por que isso importa:
+Você não está apostando em um modelo novo. Está entrando em uma operação com histórico comprovado. O que estamos te oferecendo agora tem o mesmo DNA do que já está funcionando em Itacaré.
+
+Me responde se quiser ver os números completos de operação.
+
+[Consultor] | Seazone Investimentos</div>
+          <button class="copy-btn" onclick="cp('t-szi-t5-em',this)">Copiar</button>
+        </div>
+      </div>
     </div>
 
     <!-- 08/05 PROP T4 -->
@@ -642,13 +858,42 @@ Posso reservar um horário rápido para te apresentar os detalhes?
     </div>
 
     <!-- 09/05 LOST C/ OPP T3 -->
-    <div class="cal-row">
+    <div class="cal-row" id="row-lopp-t3">
       <div class="cal-date">09/05<small>Sab</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#EF444420;color:var(--red)">Lost c/ Opp</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T3</div>
       <div class="cal-tema">Porta de entrada — Caraguá Spot · R$191k</div>
       <div class="cal-ch"><span class="ch-wa">WA</span><span class="ch-em">Email</span></div>
-      <div style="padding:9px 12px;"><span class="status-ok">✓ Pronto</span></div>
+      <div style="padding:9px 12px;"><button class="btn-open" onclick="toggle('lopp-t3',event)">● Ver msg</button></div>
+    </div>
+    <div class="msg-drawer" id="d-lopp-t3">
+      <div class="drawer-inner">
+        <div>
+          <div class="dlabel" style="color:#15803D">● WhatsApp</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-lopp-t3-wa">[Nome], se o que travou foi o ticket: o Caraguá Spot começa em R$191 mil, 15,4% a.a. projetado em Caraguatatuba. É o menor do portfólio hoje. A Seazone cuida de tudo. O que falta para essa conversa acontecer?</div>
+          <button class="copy-btn" onclick="cp('t-lopp-t3-wa',this)">Copiar</button>
+        </div>
+        <div>
+          <div class="dlabel" style="color:var(--blue)">● E-mail</div>
+          <div class="msg-subj"><span>Assunto:</span> R$191 mil para entrar · Caraguá Spot · última chamada</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-lopp-t3-em">[Nome],
+
+Ao longo das últimas semanas te apresentei a Seazone Investimentos e o modelo SPOT. Quero fazer uma última tentativa antes de encerrar o ciclo.
+
+O Caraguá Spot é o menor ticket do portfólio:
+→ A partir de R$191.000
+→ Retorno projetado: 15,4% ao ano
+→ Localização: Caraguatatuba/SP — litoral norte de São Paulo
+→ Gestão completa da Seazone
+
+Se o que travou a conversa foi o valor de entrada, esse é o ponto de partida. Muitos investidores entram com o menor ticket, acompanham a operação por 6 meses e voltam para uma segunda cota.
+
+Se quiser conversar antes do mês fechar, me responde aqui.
+
+[Consultor] | Seazone Investimentos</div>
+          <button class="copy-btn" onclick="cp('t-lopp-t3-em',this)">Copiar</button>
+        </div>
+      </div>
     </div>
 
     <!-- 10/05 MKT T3 -->
@@ -672,13 +917,44 @@ Posso reservar um horário rápido para te apresentar os detalhes?
     </div>
 
     <!-- 12/05 SZI T6 -->
-    <div class="cal-row">
+    <div class="cal-row" id="row-szi-t6">
       <div class="cal-date">12/05<small>Ter</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#F59E0B20;color:var(--yellow)">Invest. SZI</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T6</div>
       <div class="cal-tema">Acessibilidade — Ponta das Canas Spot II · R$196k</div>
       <div class="cal-ch"><span class="ch-wa">WA</span><span class="ch-em">Email</span></div>
-      <div style="padding:9px 12px;"><span class="status-ok">✓ Pronto</span></div>
+      <div style="padding:9px 12px;"><button class="btn-open" onclick="toggle('szi-t6',event)">● Ver msg</button></div>
+    </div>
+    <div class="msg-drawer" id="d-szi-t6">
+      <div class="drawer-inner">
+        <div>
+          <div class="dlabel" style="color:#15803D">● WhatsApp</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t6-wa">[Nome], mais uma opção: Ponta das Canas Spot II, em Florianópolis. A partir de R$196 mil — segundo menor ticket do portfólio, Floripa com demanda constante o ano todo. Quer os detalhes?</div>
+          <button class="copy-btn" onclick="cp('t-szi-t6-wa',this)">Copiar</button>
+        </div>
+        <div>
+          <div class="dlabel" style="color:var(--blue)">● E-mail</div>
+          <div class="msg-subj"><span>Assunto:</span> Ponta das Canas Spot II · Florianópolis · a partir de R$196k</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t6-em">[Nome],
+
+Mais uma opção para o portfólio: Ponta das Canas Spot II, em Florianópolis.
+
+Ponta das Canas é uma das praias mais procuradas de Florianópolis — demanda constante durante toda a temporada e forte fora dela também, pela infraestrutura da cidade.
+
+O empreendimento:
+→ A partir de R$196.000 (segundo menor ticket do portfólio)
+→ Rentabilidade projetada: [X]% ao ano
+→ Localização: Florianópolis/SC
+→ Gestão completa da Seazone
+
+Se você ainda não diversificou por destino dentro de Santa Catarina, essa é uma forma acessível de fazer isso.
+
+Me responde se quiser os detalhes.
+
+[Consultor] | Seazone Investimentos</div>
+          <button class="copy-btn" onclick="cp('t-szi-t6-em',this)">Copiar</button>
+        </div>
+      </div>
     </div>
 
     <!-- 13/05 LOST S/ OPP T3 -->
@@ -749,13 +1025,44 @@ Se fizer sentido, me responde aqui.
     </div>
 
     <!-- 15/05 SZI T7 -->
-    <div class="cal-row">
+    <div class="cal-row" id="row-szi-t7">
       <div class="cal-date">15/05<small>Sex</small></div>
       <div style="padding:9px 12px;"><span class="stag" style="background:#F59E0B20;color:var(--yellow)">Invest. SZI</span></div>
       <div style="padding:9px 12px;font-size:.76rem;color:var(--muted)">T7</div>
       <div class="cal-tema">Fechamento — Novo Campeche Spot II · Maio fecha</div>
       <div class="cal-ch"><span class="ch-wa">WA</span><span class="ch-em">Email</span></div>
-      <div style="padding:9px 12px;"><span class="status-ok">✓ Pronto</span></div>
+      <div style="padding:9px 12px;"><button class="btn-open" onclick="toggle('szi-t7',event)">● Ver msg</button></div>
+    </div>
+    <div class="msg-drawer" id="d-szi-t7">
+      <div class="drawer-inner">
+        <div>
+          <div class="dlabel" style="color:#15803D">● WhatsApp</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t7-wa">[Nome], encerrando o ciclo de maio com a última oportunidade: Novo Campeche Spot II, Florianópolis. O lançamento fecha este mês. Se ainda não decidiu por onde ampliar o portfólio, esse é o momento.</div>
+          <button class="copy-btn" onclick="cp('t-szi-t7-wa',this)">Copiar</button>
+        </div>
+        <div>
+          <div class="dlabel" style="color:var(--blue)">● E-mail</div>
+          <div class="msg-subj"><span>Assunto:</span> Último lançamento de maio — Novo Campeche Spot II</div>
+          <div class="msg-box" contenteditable="true" spellcheck="false" id="t-szi-t7-em">[Nome],
+
+Este é o último contato do ciclo de maio.
+
+O Novo Campeche Spot II está com o lançamento encerrando. Novo Campeche é um dos bairros de maior crescimento e valorização em Florianópolis — infraestrutura consolidada, público diversificado, demanda constante.
+
+Por que é o momento:
+→ Preço de custo de lançamento — após o fechamento, entra no mercado de revenda com margem
+→ Florianópolis tem um dos maiores índices de ocupação em short stay do Brasil
+→ Rentabilidade projetada: [X]% ao ano
+→ Gestão completa da Seazone desde a entrega
+
+Se ao longo das últimas semanas alguma oportunidade fez sentido mas a decisão ficou pendente, o Novo Campeche é o ponto de chegada deste ciclo.
+
+Me responde aqui antes do fechamento.
+
+[Consultor] | Seazone Investimentos</div>
+          <button class="copy-btn" onclick="cp('t-szi-t7-em',this)">Copiar</button>
+        </div>
+      </div>
     </div>
 
   </div><!-- /cal-wrap -->
@@ -787,8 +1094,8 @@ Se fizer sentido, me responde aqui.
   <h2>Antes de disparar</h2>
   <p class="sd">Checklist obrigatório antes do primeiro envio.</p>
   <div class="steps">
-    <div class="step"><div class="sn" style="background:#EF444420;color:var(--red)">1</div><h4>Segmentar a base</h4><p>Separar os contatos nos 6 grupos. Mensagem errada para pessoa errada queima o relacionamento.</p><span class="wh" style="background:#EF444420;color:var(--red)">Antes de 22/04</span></div>
-    <div class="step"><div class="sn" style="background:#EF444420;color:var(--red)">2</div><h4>Consultor por segmento</h4><p>Cada grupo tem um dono. Quem dispara é quem acompanha — sempre em nome pessoal.</p><span class="wh" style="background:#EF444420;color:var(--red)">Antes de 22/04</span></div>
+    <div class="step"><div class="sn" style="background:#EF444420;color:var(--red)">1</div><h4>Segmentar a base</h4><p>Separar os contatos nos 6 grupos. Mensagem errada para pessoa errada queima o relacionamento.</p><span class="wh" style="background:#EF444420;color:var(--red)">Antes de 23/04</span></div>
+    <div class="step"><div class="sn" style="background:#EF444420;color:var(--red)">2</div><h4>Consultor por segmento</h4><p>Cada grupo tem um dono. Quem dispara é quem acompanha — sempre em nome pessoal.</p><span class="wh" style="background:#EF444420;color:var(--red)">Antes de 23/04</span></div>
     <div class="step"><div class="sn" style="background:#EF444420;color:var(--red)">3</div><h4>Preencher variáveis</h4><p>Personalizar [Empreendimento], [R$X] e [X]% nos T4 de Proprietários e T3 de Marketplace com base no perfil de cada lead.</p><span class="wh" style="background:#EF444420;color:var(--red)">Antes de cada disparo</span></div>
     <div class="step"><div class="sn" style="background:#F59E0B20;color:var(--yellow)">4</div><h4>Rastreamento no CRM</h4><p>Tag por segmento + intenção: respondeu / pediu mais info / agendou / comprou.</p><span class="wh" style="background:#F59E0B20;color:var(--yellow)">Antes de 24/04</span></div>
     <div class="step"><div class="sn" style="background:#22C55E20;color:var(--green)">5</div><h4>Revisão de meio</h4><p>Em 05/05: taxa de resposta + reuniões por segmento. Realocar esforço para os que estão convertendo.</p><span class="wh" style="background:#22C55E20;color:var(--green)">05/05</span></div>
